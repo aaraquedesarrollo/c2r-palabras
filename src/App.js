@@ -31,7 +31,9 @@ function App() {
   };
 
   const validacionPalabra = (palabra) => {
-    const palabrasTexto = palabras.map((palabra) => palabra.palabra);
+    const palabrasTexto = palabras.map((palabra) =>
+      palabra.palabra.toLowerCase()
+    );
     let valida = !palabrasTexto.includes(palabra.palabra);
     if (!valida) {
       return false;
@@ -57,7 +59,9 @@ function App() {
       idCopia: encuentraCantidad(palabrasResultado, palabra),
     };
     if (cantidadMismaPalabra(palabraTemp)) {
+      debugger;
       palabrasTemp.push(palabraTemp);
+      primeraPalabraPrimeraLetraMayuscula(palabrasTemp);
       setPalabrasResultado(palabrasTemp);
     }
   };
@@ -77,11 +81,22 @@ function App() {
     }
   };
 
+  const primeraPalabraPrimeraLetraMayuscula = (palabras) => {
+    if (palabras.length !== 0) {
+      palabras[0].palabra =
+        palabras[0].palabra.charAt(0).toUpperCase() +
+        palabras[0].palabra.slice(1);
+    }
+
+    return palabras;
+  };
+
   const borraPalabra = (palabra) => {
-    console.log(palabra);
     setPalabrasResultado(
-      palabrasResultado.filter(
-        (palabraComparacion) => palabra.idCopia !== palabraComparacion.idCopia
+      primeraPalabraPrimeraLetraMayuscula(
+        palabrasResultado.filter(
+          (palabraComparacion) => palabra.idCopia !== palabraComparacion.idCopia
+        )
       )
     );
   };
