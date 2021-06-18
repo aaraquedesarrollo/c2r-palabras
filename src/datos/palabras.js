@@ -2,7 +2,7 @@ export const palabrasAPI = [
   { palabra: "me", esLenguajeProgramacion: false, maxPrints: null },
   { palabra: "JavaScript", esLenguajeProgramacion: true, maxPrints: null },
   { palabra: "el", esLenguajeProgramacion: false, maxPrints: null },
-  { palabra: "la", esLenguajeProgramacion: false, maxPrints: null },
+  { palabra: "la", esLenguajeProgramacion: false, maxPrints: 3 },
   { palabra: "gusta", esLenguajeProgramacion: false, maxPrints: null },
   { palabra: "odio", esLenguajeProgramacion: false, maxPrints: null },
   { palabra: "no", esLenguajeProgramacion: false, maxPrints: null },

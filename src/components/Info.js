@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Info = (props) => {
   const { palabras } = props;
   let cantidad = 0;
@@ -44,4 +46,15 @@ export const Info = (props) => {
       </ul>
     </section>
   );
+};
+
+Info.propTypes = {
+  palabras: PropTypes.arrayOf(
+    PropTypes.shape({
+      palabra: PropTypes.string.isRequired,
+      esLenguajeProgramacion: PropTypes.bool.isRequired,
+      maxPrints: PropTypes.number,
+      idCopia: PropTypes.number,
+    })
+  ).isRequired,
 };

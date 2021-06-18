@@ -9,14 +9,37 @@ function App() {
   const [palabras, setPalabras] = useState(palabrasAPI);
   const [palabrasResultado, setPalabrasResultado] = useState([]);
 
+  const cantidadMismaPalabra = (palabra) => {
+    if (palabrasResultado.length !== 0) {
+      const maximo = palabra.maxPrints;
+      let cantidad = 0;
+      if (maximo === null) {
+        return true;
+      }
+
+      palabrasResultado.reduce((dummy, palabraComparacion) => {
+        if (palabra.palabra === palabraComparacion.palabra) {
+          ++cantidad;
+        }
+        return cantidad;
+      });
+
+      return cantidad < maximo ? true : false;
+    }
+
+    return true;
+  };
+
   const anyadePalabra = (palabra) => {
     const palabrasTemp = [...palabrasResultado];
     const palabraTemp = {
       ...palabra,
       idCopia: encuentraCantidad(palabrasResultado, palabra),
     };
-    palabrasTemp.push(palabraTemp);
-    setPalabrasResultado(palabrasTemp);
+    if (cantidadMismaPalabra(palabraTemp)) {
+      palabrasTemp.push(palabraTemp);
+      setPalabrasResultado(palabrasTemp);
+    }
   };
 
   const encuentraCantidad = (palabrasResultado) => {
