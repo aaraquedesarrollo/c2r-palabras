@@ -19,9 +19,11 @@ export const Info = (props) => {
     return 0;
   };
 
-  const palabrasLenguajesProgramacion = palabras.filter(
-    (palabra) => palabra.esLenguajeProgramacion
-  );
+  const palabrasLenguajesProgramacion = palabras
+    .filter((palabra) => palabra.esLenguajeProgramacion)
+    .map((palabra) => palabra.palabra)
+    .sort()
+    .reverse();
   return (
     <section className="info">
       <ul>
@@ -39,7 +41,7 @@ export const Info = (props) => {
           programación
           <ul>
             {palabrasLenguajesProgramacion.map((palabra) => (
-              <li>{palabra.palabra}</li>
+              <li>{palabra}</li>
             ))}
           </ul>
         </li>
