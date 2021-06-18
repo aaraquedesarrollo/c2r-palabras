@@ -11,23 +11,43 @@ function App() {
 
   const cantidadMismaPalabra = (palabra) => {
     if (palabrasResultado.length !== 0) {
-      const maximo = palabra.maxPrints;
+      let maximo = palabra.maxPrints;
       let cantidad = 0;
-      if (maximo === null) {
+      if (maximo === null || maximo === "0" || maximo === "") {
         return true;
       }
-
+      maximo = parseInt(maximo);
       palabrasResultado.reduce((dummy, palabraComparacion) => {
         if (palabra.palabra === palabraComparacion.palabra) {
           ++cantidad;
         }
         return cantidad;
       });
-
+      console.log(cantidad, maximo);
       return cantidad < maximo ? true : false;
     }
 
     return true;
+  };
+
+  const validacionPalabra = (palabra) => {
+    const palabrasTexto = palabras.map((palabra) => palabra.palabra);
+    let valida = !palabrasTexto.includes(palabra.palabra);
+    if (!valida) {
+      return false;
+    }
+
+    if (/\s/.test(palabra.palabra)) {
+      return false;
+    }
+    return true;
+  };
+  const anyadirPalabraNueva = (e, palabra) => {
+    e.preventDefault();
+    if (!validacionPalabra(palabra)) {
+      return;
+    }
+    setPalabras([...palabras, palabra]);
   };
 
   const anyadePalabra = (palabra) => {
@@ -72,7 +92,7 @@ function App() {
         <Lista palabras={palabras} anyadePalabra={anyadePalabra} />
         <Resultado palabras={palabrasResultado} borraPalabra={borraPalabra} />
       </section>
-      <Formulario />
+      <Formulario anyadirPalabraNueva={anyadirPalabraNueva} />
       <Info palabras={palabrasResultado} />
     </>
   );
