@@ -1,21 +1,44 @@
-export const Info = () => {
+export const Info = (props) => {
+  const { palabras } = props;
+  let cantidad = 0;
+
+  const numeroCaracteres = () => {
+    for (const i in palabras) {
+      cantidad += palabras[i].palabra.length;
+    }
+
+    return cantidad;
+  };
+
+  const longitudMedia = () => {
+    if (palabras.length !== 0) {
+      return (cantidad / palabras.length).toFixed(2);
+    }
+    return 0;
+  };
+
+  const palabrasLenguajesProgramacion = palabras.filter(
+    (palabra) => palabra.esLenguajeProgramacion
+  );
   return (
     <section className="info">
       <ul>
         <li>
-          Nº de palabras <span>15</span>
+          Nº de palabras <span>{palabras.length}</span>
         </li>
         <li>
-          Nº de caracteres <span>74</span>
+          Nº de caracteres <span>{numeroCaracteres()}</span>
         </li>
         <li>
-          Longitud media <span>5.32</span>
+          Longitud media <span>{longitudMedia()}</span>
         </li>
         <li>
-          Contiene 2 lenguaje/s de programación
+          Contiene {palabrasLenguajesProgramacion.length} lenguaje/s de
+          programación
           <ul>
-            <li>JavaScript</li>
-            <li>Java</li>
+            {palabrasLenguajesProgramacion.map((palabra) => (
+              <li>{palabra.palabra}</li>
+            ))}
           </ul>
         </li>
       </ul>

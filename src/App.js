@@ -50,7 +50,7 @@ function App() {
         <Resultado palabras={palabrasResultado} borraPalabra={borraPalabra} />
       </section>
       <Formulario />
-      <Info />
+      <Info palabras={palabrasResultado} />
     </>
   );
 }
