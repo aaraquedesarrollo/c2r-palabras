@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Lista = (props) => {
   const { palabras, anyadePalabra } = props;
   return (
@@ -19,4 +21,16 @@ export const Lista = (props) => {
       })}
     </ul>
   );
+};
+
+Lista.propTypes = {
+  palabras: PropTypes.arrayOf(
+    PropTypes.shape({
+      palabra: PropTypes.string.isRequired,
+      esLenguajeProgramacion: PropTypes.bool.isRequired,
+      maxPrints: PropTypes.number,
+      idCopia: PropTypes.number,
+    })
+  ).isRequired,
+  anyadePalabra: PropTypes.func.isRequired,
 };

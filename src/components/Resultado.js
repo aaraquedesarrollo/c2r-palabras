@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Resultado = (props) => {
   const { palabras, borraPalabra } = props;
   return (
@@ -19,4 +21,16 @@ export const Resultado = (props) => {
       })}
     </ul>
   );
+};
+
+Resultado.propTypes = {
+  palabras: PropTypes.arrayOf(
+    PropTypes.shape({
+      palabra: PropTypes.string.isRequired,
+      esLenguajeProgramacion: PropTypes.bool.isRequired,
+      maxPrints: PropTypes.number,
+      idCopia: PropTypes.number,
+    })
+  ).isRequired,
+  borraPalabra: PropTypes.func.isRequired,
 };
